@@ -1,0 +1,199 @@
+<div class="admin-cms" id="adminCms" hidden>
+  <header class="admin-cms__topbar">
+    <div class="brand">
+      <span class="logo">xPandorax Admin</span>
+      <span class="env-chip" title="Static, no backend">STATIC</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn btn-icon" id="themeSwitch" aria-label="Toggle theme" title="Toggle theme" data-theme="auto">
+        <i data-lucide="moon"></i>
+      </button>
+      <div class="clock" id="phClock" title="Philippines time (UTC+8)">--:--:-- PH</div>
+      <button class="btn btn-danger" id="logoutBtn" title="Sign out"><i data-lucide="log-out"></i><span>Sign out</span></button>
+    </div>
+  </header>
+
+  <main class="admin-cms__main">
+    <aside class="admin-cms__nav">
+      <button class="nav-item active" data-tab="content">
+        <i data-lucide="hard-drive"></i><span>Content</span>
+      </button>
+      <button class="nav-item" data-tab="entities">
+        <i data-lucide="users"></i><span>Entity Management</span>
+      </button>
+      <button class="nav-item" data-tab="settings">
+        <i data-lucide="settings"></i><span>Settings</span>
+      </button>
+    </aside>
+
+    <section class="admin-cms__view" data-view="content">
+      <div class="uploader">
+        <div class="dropzone" id="dropZone" tabindex="0" aria-label="Drop or paste links here">
+          <div class="dz-inner">
+            <i data-lucide="upload-cloud" class="dz-icon"></i>
+            <h3>Drop or paste links</h3>
+            <p>Paste multiple video embed links and image URLs. We auto-detect hosts and images.</p>
+            <button class="btn btn-primary" id="pasteBtn" type="button"><i data-lucide="clipboard-paste"></i><span>Paste</span></button>
+          </div>
+          <textarea class="dz-paste-capture" id="pasteCapture" aria-hidden="true"></textarea>
+        </div>
+        <div class="dz-hints">
+          <small>Supported: Doodstream, Streamtape, VidGuard, FileGram, MixDrop, VOE, FileMoon, 1fichier, StreamWish, StreamSB, StreamHub, StreamLare, GDrivePlayer, DropLoad, Mega.nz, Pixeldrain, Uptobox, Send.cm, Kwik.cx, Filelions.to, Vidoza, StreamHide, Userload.co, StreamtapeX, StreamZZ, plus image URLs (.jpg .jpeg .png .gif .webp).</small>
+        </div>
+      </div>
+
+      <div class="content-toolbar">
+        <button class="btn btn-success" id="newEntryBtn"><i data-lucide="plus"></i><span>New Entry</span></button>
+        <button class="btn" id="downloadJsonBtn"><i data-lucide="download"></i><span>Download JSON</span></button>
+        <span class="spacer"></span>
+        <label class="search">
+          <i data-lucide="search"></i>
+          <input id="searchContent" placeholder="Search code/title/tags">
+        </label>
+      </div>
+
+      <div class="content-grid" id="contentGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="admin-cms__view" data-view="entities" hidden>
+      <div class="entity-tabs" role="tablist">
+        <button class="entity-tab active" role="tab" data-entity="studios">Studios</button>
+        <button class="entity-tab" role="tab" data-entity="directors">Directors</button>
+        <button class="entity-tab" role="tab" data-entity="models">Models</button>
+        <button class="entity-tab" role="tab" data-entity="series">Series</button>
+        <button class="entity-tab" role="tab" data-entity="labels">Labels</button>
+        <button class="entity-tab" role="tab" data-entity="genres">Genres</button>
+        <span class="spacer"></span>
+        <button class="btn btn-success" id="addEntityBtn"><i data-lucide="plus"></i><span>Add</span></button>
+      </div>
+      <div class="entity-grid" id="entityGrid"></div>
+    </section>
+
+    <section class="admin-cms__view" data-view="settings" hidden>
+      <div class="settings">
+        <h3>Settings</h3>
+        <div class="setting-item">
+          <label>Theme</label>
+          <div class="btn-group">
+            <button class="btn" data-theme-select="light">Light</button>
+            <button class="btn" data-theme-select="dark">Dark</button>
+            <button class="btn" data-theme-select="auto">Auto</button>
+          </div>
+        </div>
+        <div class="setting-item">
+          <label>Security</label>
+          <div><small>Access requires localStorage key <code>xpandorax_auth</code> with role <code>admin</code>.</small></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modals root -->
+  <div class="modal-root" id="modalRoot" aria-live="polite"></div>
+  <div class="toast-root" id="toastRoot" aria-live="polite"></div>
+
+  <!-- Templates -->
+  <template id="videoModalTmpl">
+    <div class="modal">
+      <div class="modal__dialog modal--xl">
+        <header class="modal__header">
+          <h3 id="videoModalTitle">New Video</h3>
+          <button class="btn btn-icon" data-close><i data-lucide="x"></i></button>
+        </header>
+        <div class="modal__body">
+          <form class="form-grid" id="videoForm">
+            <div class="form-col">
+              <label>Title*<input required name="title"></label>
+              <label>Code*<input required name="code" placeholder="START-443"></label>
+              <label>Release Date*<input required name="releaseDate" type="date"></label>
+              <label>Categories
+                <select name="categories" multiple>
+                  <option>1080p</option>
+                  <option>HD</option>
+                  <option>JAV</option>
+                  <option>Uncensored</option>
+                </select>
+              </label>
+              <label>Cover Image URL<input name="cover"></label>
+              <div class="rich">
+                <div class="rich-toolbar">
+                  <button type="button" data-rich="bold" class="btn btn-icon" title="Bold"><i data-lucide="bold"></i></button>
+                  <button type="button" data-rich="italic" class="btn btn-icon" title="Italic"><i data-lucide="italic"></i></button>
+                  <button type="button" data-rich="link" class="btn btn-icon" title="Link"><i data-lucide="link"></i></button>
+                </div>
+                <label>Description
+                  <div class="rich-editor" contenteditable="true" data-field="description"></div>
+                </label>
+              </div>
+              <div class="entity-fields">
+                <div class="entity-field" data-type="studio"></div>
+                <div class="entity-field" data-type="director"></div>
+                <div class="entity-field" data-type="actress"></div>
+                <div class="entity-field" data-type="actors"></div>
+                <div class="entity-field" data-type="series"></div>
+                <div class="entity-field" data-type="label"></div>
+                <div class="entity-field" data-type="genres"></div>
+              </div>
+            </div>
+            <div class="form-col">
+              <fieldset>
+                <legend>Screenshots (9)</legend>
+                <div class="grid-3" data-field="screenshots">
+                  <!-- 9 inputs rendered by JS -->
+                </div>
+              </fieldset>
+              <fieldset>
+                <legend>Extra Large Images (2)</legend>
+                <div class="grid-2" data-field="xlImages">
+                  <!-- 2 inputs rendered by JS -->
+                </div>
+              </fieldset>
+              <fieldset>
+                <legend>Embeds</legend>
+                <div class="embeds" id="embedsFields"></div>
+              </fieldset>
+            </div>
+          </form>
+        </div>
+        <footer class="modal__footer">
+          <button class="btn" data-close>Cancel</button>
+          <span class="spacer"></span>
+          <button class="btn btn-success" id="saveVideoBtn"><i data-lucide="save"></i><span>Save</span></button>
+        </footer>
+      </div>
+    </div>
+  </template>
+
+  <template id="entityPickerTmpl">
+    <label class="entity-picker">
+      <span class="ep-label"></span>
+      <div class="ep-input">
+        <i data-lucide="search"></i>
+        <input class="ep-search" placeholder="Search or create...">
+        <button class="btn btn-icon ep-create" type="button" title="Create new"><i data-lucide="plus"></i></button>
+      </div>
+      <div class="ep-results" hidden></div>
+    </label>
+  </template>
+
+  <template id="entityModalTmpl">
+    <div class="modal">
+      <div class="modal__dialog">
+        <header class="modal__header">
+          <h3 id="entityModalTitle">Create</h3>
+          <button class="btn btn-icon" data-close><i data-lucide="x"></i></button>
+        </header>
+        <div class="modal__body">
+          <form id="entityForm" class="form-grid entity-form">
+            <!-- dynamic fields rendered by JS based on entity type -->
+          </form>
+        </div>
+        <footer class="modal__footer">
+          <button class="btn" data-close>Cancel</button>
+          <span class="spacer"></span>
+          <button class="btn btn-success" id="saveEntityBtn"><i data-lucide="save"></i><span>Save</span></button>
+        </footer>
+      </div>
+    </div>
+  </template>
+</div>

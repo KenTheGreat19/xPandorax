@@ -1,0 +1,261 @@
+/* Common grid styles */
+.category-main,
+.models-main,
+.producers-main,
+.videos-main,
+.pictures-main {
+    padding: 120px 2rem 2rem;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Filters bar */
+.filters-bar,
+.pictures-filters {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: var(--card);
+    border-radius: 8px;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-select {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--input-dark);
+    color: var(--text);
+    font-size: 14px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-group label {
+    color: var(--text);
+    font-size: 14px;
+}
+
+.filter-group select {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--input-dark);
+    color: var(--text);
+    font-size: 14px;
+}
+
+/* Grid layouts */
+.category-grid,
+.models-grid,
+.producers-grid,
+.pictures-grid,
+.grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+/* Placeholder styles */
+.placeholder-category,
+.placeholder-model,
+.placeholder-producer {
+    background: var(--card);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Category placeholders */
+.placeholder-category .placeholder-thumb {
+    aspect-ratio: 16/9;
+    background: linear-gradient(110deg, var(--input-dark) 8%, var(--card) 18%, var(--input-dark) 33%);
+    background-size: 200% 100%;
+    animation: shine 1.5s infinite linear;
+}
+
+/* Model placeholders */
+.placeholder-model .placeholder-avatar {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin: 1rem auto;
+    width: 120px;
+    background: linear-gradient(110deg, var(--input-dark) 8%, var(--card) 18%, var(--input-dark) 33%);
+    background-size: 200% 100%;
+    animation: shine 1.5s infinite linear;
+}
+
+/* Producer placeholders */
+.placeholder-producer .placeholder-logo {
+    aspect-ratio: 3/2;
+    margin: 1rem;
+    background: linear-gradient(110deg, var(--input-dark) 8%, var(--card) 18%, var(--input-dark) 33%);
+    background-size: 200% 100%;
+    animation: shine 1.5s infinite linear;
+    border-radius: 4px;
+}
+
+/* Common placeholder elements */
+.placeholder-info {
+    padding: 1rem;
+}
+
+.placeholder-name,
+.placeholder-title {
+    height: 24px;
+    background: linear-gradient(110deg, var(--input-dark) 8%, var(--card) 18%, var(--input-dark) 33%);
+    background-size: 200% 100%;
+    animation: shine 1.5s infinite linear;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.placeholder-stats,
+.placeholder-count {
+    height: 16px;
+    width: 60%;
+    background: linear-gradient(110deg, var(--input-dark) 8%, var(--card) 18%, var(--input-dark) 33%);
+    background-size: 200% 100%;
+    animation: shine 1.5s infinite linear;
+    border-radius: 4px;
+}
+
+/* Animation */
+@keyframes shine {
+    to {background-position-x: -200%;}
+}
+
+@keyframes shimmer {
+    0% {left: -150%;}
+    100% {left: 150%;}
+}
+
+/* Gallery placeholder card (glossy style) */
+.gallery-placeholder {
+    background: linear-gradient(180deg, rgba(30,30,45,1) 0%, rgba(28,28,38,1) 60%);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.gallery-placeholder .thumb {
+    height: 0;
+    padding-top: 56.25%;
+    position: relative;
+    background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0.3) 45%, rgba(255,255,255,0.06) 60%);
+    box-shadow: inset -40px -10px 80px rgba(0,0,0,0.45);
+}
+
+.gallery-placeholder .thumb::after {
+    content: "";
+    position: absolute;
+    left: 6%;
+    top: 6%;
+    right: 6%;
+    bottom: 30%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.14), rgba(255,255,255,0.02));
+    transform: skewX(-10deg);
+    filter: blur(10px);
+    opacity: 0.9;
+    border-radius: 6px;
+}
+
+.gallery-placeholder .meta {
+    background: rgba(255,255,255,0.05);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.gallery-placeholder .meta .bar {
+    height: 14px;
+    border-radius: 8px;
+    background: linear-gradient(90deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.02) 50%, rgba(0,0,0,0.06) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-placeholder .meta .bar.large {width: 84%;height: 14px;}
+.gallery-placeholder .meta .bar.small {width: 56%;height: 12px;}
+
+.placeholder-shimmer {
+    position: absolute;
+    left: -150%;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.20) 50%, rgba(255,255,255,0) 100%);
+    animation: shimmer 1.6s linear infinite;
+    transform: skewX(-10deg);
+}
+
+.gallery-placeholder .meta .bar .placeholder-shimmer {
+    left: -120%;
+    width: 60%;
+    transform: skewX(-10deg);
+}
+
+.gallery-placeholder:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.65);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .category-main,
+    .models-main,
+    .producers-main,
+    .videos-main,
+    .pictures-main {
+        padding: 100px 1rem 1rem;
+    }
+
+    .category-grid,
+    .models-grid,
+    .producers-grid,
+    .pictures-grid,
+    .grid {
+        gap: 1rem;
+    }
+
+    .placeholder-model .placeholder-avatar {
+        width: 100px;
+    }
+
+    .filters-bar,
+    .pictures-filters {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* Load More Button */
+.load-more-container {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.load-more-btn {
+    padding: 12px 24px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.load-more-btn:hover {
+    background: var(--accent-hover);
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Request - xPandorax</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Primary Header -->
+    <header class="primary-header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🎭</span>
+                <span class="logo-text">xPandorax</span>
+            </a>
+
+            <div class="header-actions">
+                <button id="signInButton" class="sign-in-btn" data-i18n="sign_in">Sign In</button>
+                <button id="languageToggle" class="language-toggle" aria-label="Change language">🌐 EN</button>
+                <button id="settingsButton" class="settings-btn" aria-label="Settings">⚙️</button>
+                <button id="mobileMenuToggle" class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Secondary Navigation -->
+    <nav class="secondary-nav">
+        <a href="index.html" data-i18n="nav_home">Home</a>
+        <a href="categories.html" data-i18n="nav_categories">Categories</a>
+        <a href="videos.html" data-i18n="nav_videos">Videos</a>
+        <a href="pictures.html" data-i18n="nav_pictures">Pictures</a>
+        <a href="models.html" data-i18n="nav_models">Models</a>
+        <a href="producers.html" data-i18n="nav_producers">Producers</a>
+    </nav>
+    
+    <main class="legal-content">
+        <h1>Upload Request Overview</h1>
+        <div class="legal-text">
+            <p>If you wish to submit a video or picture for upload consideration on xPandorax, please send your request directly through our official Telegram Upload Bot using the link below:</p>
+            
+            <p class="telegram-link">
+                👉 <a href="https://t.me/xPandoraxSubmitContent_bot" target="_blank">Submit Content via Telegram</a>
+            </p>
+            
+            <h2>Important Notice:</h2>
+            <ul>
+                <li>All content submissions are manually reviewed before approval and publishing.</li>
+                <li>We strictly enforce a zero-tolerance policy against illegal content such as child pornography, revenge porn, or any non-consensual material.</li>
+                <li>xPandorax is not responsible for the production or ownership of submitted content.</li>
+                <li>By submitting, you confirm that your material complies with our guidelines and all applicable laws.</li>
+            </ul>
+            
+            <h2>When submitting through our Telegram bot, please include the following details:</h2>
+            <ul>
+                <li><strong>Model Name</strong> – Required. If unknown, type "Unknown" or "N/A".</li>
+                <li><strong>Model Birthday</strong> – Optional.</li>
+                <li><strong>Model Height</strong> – Optional.</li>
+                <li><strong>Model Weight</strong> – Optional.</li>
+                <li><strong>Model Zodiac Sign</strong> – Optional.</li>
+                <li><strong>Picture/Video Publisher</strong> – Required. If unknown, type "Unknown" or "N/A".</li>
+                <li><strong>Date Released</strong> – Provide the date of release if available.</li>
+                <li><strong>Code (if applicable)</strong> – Optional field for internal or reference code.</li>
+                <li><strong>File Name & Attachment</strong> – Upload your file (video or image).</li>
+            </ul>
+            
+            <h2>Submission Guidelines:</h2>
+            <ul>
+                <li>For video uploads, the video should be at least 1 minute long.</li>
+                <li>For photo uploads, ensure that the model and publisher information are clearly provided.</li>
+                <li>All uploads will be reviewed and verified by our content management team before any approval or posting.</li>
+            </ul>
+
+            <div class="telegram-links">
+                <h3>Official Telegram Links:</h3>
+                <ul>
+                    <li><a href="https://t.me/xPandorax_bot" target="_blank">Main Bot</a></li>
+                    <li><a href="https://t.me/xPandoraxSubmitContent_bot" target="_blank">Content Submission Bot</a></li>
+                    <li><a href="https://t.me/xPandoraxClientSupport_bot" target="_blank">Client Support Bot</a></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html" data-i18n="footer.home">Home</a>
+            <a href="contact.html" data-i18n="footer.contact">Contact Us</a>
+            <a href="upload_request.html" data-i18n="footer.upload">Upload Request</a>
+            <a href="legal/dmca.html" data-i18n="footer.dmca">DMCA</a>
+            <a href="legal/2257.html" data-i18n="footer.2257">2257</a>
+            <a href="legal/tos.html" data-i18n="footer.terms">Terms of Service</a>
+            <a href="legal/privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+        </div>
+        <p class="footer-copyright" data-i18n="footer.copyright">© 2025 xPandorax.com | All Rights Reserved</p>
+    </footer>
+
+    <!-- Floating Telegram Button -->
+    <a href="https://t.me/xPandorax_bot" target="_blank" rel="noopener" class="telegram-float" title="Telegram" aria-label="Open Telegram"></a>
+
+    <!-- Floating Theme Toggle -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌑</button>
+
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+    <!-- Language Selector Modal -->
+    <div id="languageModal" class="language-modal" aria-hidden="true">
+        <div class="language-menu">
+            <button class="lang-option" data-lang="zh-TW"><img src="assets/img/flags/hong-kong.png" alt="HK" class="flag-img"><span class="lang-name">繁體中文</span></button>
+            <button class="lang-option" data-lang="zh-CN"><img src="assets/img/flags/china.png" alt="CN" class="flag-img"><span class="lang-name">简体中文</span></button>
+            <button class="lang-option" data-lang="en"><img src="assets/img/flags/united-kingdom.png" alt="EN" class="flag-img"><span class="lang-name">English</span></button>
+            <button class="lang-option" data-lang="ja"><img src="assets/img/flags/japan.png" alt="JA" class="flag-img"><span class="lang-name">日本語</span></button>
+            <button class="lang-option" data-lang="ko"><img src="assets/img/flags/south-korea.png" alt="KO" class="flag-img"><span class="lang-name">한국의</span></button>
+            <button class="lang-option" data-lang="ms"><img src="assets/img/flags/malaysia.png" alt="MY" class="flag-img"><span class="lang-name">Melayu</span></button>
+            <button class="lang-option" data-lang="th"><img src="assets/img/flags/thailand.png" alt="TH" class="flag-img"><span class="lang-name">ไทย</span></button>
+            <button class="lang-option" data-lang="de"><img src="assets/img/flags/germany.png" alt="DE" class="flag-img"><span class="lang-name">Deutsch</span></button>
+            <button class="lang-option" data-lang="fr"><img src="assets/img/flags/france.png" alt="FR" class="flag-img"><span class="lang-name">Français</span></button>
+            <button class="lang-option" data-lang="vi"><img src="assets/img/flags/vietnam.png" alt="VN" class="flag-img"><span class="lang-name">Tiếng Việt</span></button>
+            <button class="lang-option" data-lang="id"><img src="assets/img/flags/brazil.png" alt="ID" class="flag-img"><span class="lang-name">Bahasa Indonesia</span></button>
+            <button class="lang-option" data-lang="fil"><img src="assets/img/flags/philippines.png" alt="FIL" class="flag-img"><span class="lang-name">Filipino</span></button>
+            <button class="lang-option" data-lang="pt"><img src="assets/img/flags/brazil.png" alt="PT" class="flag-img"><span class="lang-name">Português</span></button>
+        </div>
+    </div>
+</body>
+</html>

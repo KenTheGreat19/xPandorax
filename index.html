@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>xPandorax — Premium JAV Index | Japanese Adult Video Content</title>
+  <meta name="description" content="xPandorax: Your curated index for premium Japanese Adult Video (JAV) content. Browse 1080p, 4K, HD videos from top studios. All content embedded from third-party CDN providers.">
+  <meta name="keywords" content="JAV, Japanese Adult Video, JAV index, HD JAV, 4K JAV, uncensored JAV, Japanese AV">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://xpandorax.com/">
+  <meta property="og:title" content="xPandorax — Premium JAV Index">
+  <meta property="og:description" content="Curated JAV index with HD and 4K content. All media embedded from third parties.">
+  <meta property="og:image" content="/text/assets/img/og-thumb.jpg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://xpandorax.com/">
+  <meta property="twitter:title" content="xPandorax — Premium JAV Index">
+  <meta property="twitter:description" content="Curated JAV index with HD and 4K content.">
+  <meta property="twitter:image" content="/text/assets/img/og-thumb.jpg">
+  
+  <!-- Preconnect to external domains -->
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link rel="dns-prefetch" href="https://unpkg.com">
+  
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Critical CSS inline (extracted from style.css) -->
+  <style>
+    :root{--bg:#0b0b17;--text:#e6e6f0;--card:#121228;--border:#232347}
+    [data-theme=light]{--bg:#ffffff;--text:#0e0e18;--card:#f9f9fb;--border:#e5e7eb}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+    .primary-header{position:sticky;top:0;z-index:100;background:var(--card);border-bottom:1px solid var(--border)}
+  </style>
+  
+  <!-- Load full CSS asynchronously -->
+  <link rel="stylesheet" href="assets/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="assets/css/style.css"></noscript>
+  
+  <script>
+    // Apply theme early to avoid FOUC
+    (function(){
+      try{
+        var t=localStorage.getItem('theme')||'dark';
+        if(t==='auto'){ t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+        document.documentElement.setAttribute('data-theme', t);
+      }catch(e){}
+    })();
+  </script>
+</head>
+<body>
+  <header class="primary-header">
+    <a class="logo" href="index.html">
+      <span class="logo-icon">🎭</span>
+      <span class="logo-text">xPandorax</span>
+    </a>
+    
+    <div class="header-search homepage-hide">
+      <input id="search" type="search" data-i18n-placeholder="search.placeholder" placeholder="Search JAV codes, models, titles..." aria-label="Search">
+      <div id="autocomplete" class="autocomplete" role="listbox" aria-hidden="true"></div>
+    </div>
+    
+    <div class="header-actions">
+      <button id="signinBtn" class="btn signin-btn" data-i18n="signin">Sign In</button>
+      
+      <button id="languageToggle" class="language-toggle" aria-label="Change language">� EN</button>
+      
+      <button class="settings-btn" title="Settings"><span></span></button>
+      
+      <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <!-- Mobile slide-in menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="menu-inner">
+      <a href="index.html" class="mobile-logo">
+        <span class="logo-icon">🎭</span>
+        <span class="logo-text">xPandorax</span>
+      </a>
+      <a href="#beingWatched">Being Watched</a>
+      <a href="#newest">Newest</a>
+      <a href="/text/contact.html">Contact</a>
+      <a href="/text/upload_request.html">Upload Request</a>
+      <a href="/text/admin.html">Admin</a>
+      <hr>
+      <a href="/text/legal/dmca.html">DMCA</a>
+      <a href="/text/legal/2257.html">2257</a>
+      <a href="/text/legal/tos.html">Terms</a>
+      <a href="/text/legal/privacy.html">Privacy</a>
+    </div>
+  </div>
+
+  <nav class="secondary-nav">
+    <a href="index.html" class="active" data-i18n="nav.home">Home</a>
+    <a href="categories.html" data-i18n="nav.categories">Categories</a>
+    <a href="videos.html" data-i18n="nav.videos">Videos</a>
+    <a href="pictures.html" data-i18n="nav.pictures">Pictures</a>
+    <a href="models.html" data-i18n="nav.models">Models</a>
+    <a href="producers.html" data-i18n="nav.producers">Producers</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="hero-title"><span data-i18n="hero.title">Maghanap ng anuman</span> <span class="accent" data-i18n="hero.subtitle">Adult Video and Picture</span></h1>
+      <form class="hero-search" onsubmit="return false;">
+        <input id="heroSearch" type="search" placeholder="Gamitin ang \"+\" upang pagsamahin ang marami..." aria-label="Search" data-i18n="hero.searchPlaceholder">
+        <button id="heroSearchBtn" class="btn primary" data-i18n="btn.search">Maghanap</button>
+      </form>
+    </div>
+  </section>
+
+  <main id="main" tabindex="0">
+    <section id="bestViewed" class="content-section">
+      <h2><span data-i18n="section.bestViewed">Best Viewed Right Now</span> <button class="load-more" data-section="bestViewed" data-i18n="btn.loadMore">Load more ↓</button></h2>
+      <div class="grid" data-section-grid="bestViewed"></div>
+    </section>
+
+    <section id="bestWatched" class="content-section">
+      <h2><span data-i18n="section.bestWatched">Best Watched Right Now</span> <button class="load-more" data-section="bestWatched" data-i18n="btn.loadMore">Load more ↓</button></h2>
+      <div class="grid" data-section-grid="bestWatched"></div>
+    </section>
+
+    <section id="newestImages" class="content-section">
+      <h2><span data-i18n="section.newestImages">Newest Images</span> <button class="load-more" data-section="newestImages" data-i18n="btn.loadMore">Load more ↓</button></h2>
+      <div class="grid" data-section-grid="newestImages"></div>
+    </section>
+
+    <section id="newestVideos" class="content-section">
+      <h2><span data-i18n="section.newestVideos">Newest Videos</span> <button class="load-more" data-section="newestVideos" data-i18n="btn.loadMore">Load more ↓</button></h2>
+      <div class="grid" data-section-grid="newestVideos"></div>
+    </section>
+
+    <section id="hotModelPictures" class="content-section">
+      <h2><span data-i18n="section.hotModelPictures">Hot Model (Pictures)</span> <button class="load-more" data-section="hotModelPictures" data-i18n="btn.loadMore">Load more ↓</button></h2>
+      <div class="grid" data-section-grid="hotModelPictures"></div>
+    </section>
+
+    <section id="hotModelVideos" class="content-section">
+      <h2><span data-i18n="section.hotModelVideos">Hot Model (Videos)</span> <button class="load-more" data-section="hotModelVideos" data-i18n="btn.loadMore">Load more ↓</button></h2>
+      <div class="grid" data-section-grid="hotModelVideos"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="index.html" data-i18n="footer.home">Home</a>
+      <a href="contact.html" data-i18n="footer.contact">Contact Us</a>
+      <a href="upload_request.html" data-i18n="footer.upload">Upload Request</a>
+      <a href="legal/dmca.html" data-i18n="footer.dmca">DMCA</a>
+      <a href="legal/2257.html" data-i18n="footer.2257">2257</a>
+      <a href="legal/tos.html" data-i18n="footer.terms">Terms of Service</a>
+      <a href="legal/privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+    </div>
+    <p class="footer-copyright" data-i18n="footer.copyright">© 2025 xPandorax.com | All Rights Reserved</p>
+  </footer>
+
+  <!-- Language Selector Modal -->
+  <div id="languageModal" class="language-modal" aria-hidden="true">
+    <div class="language-menu">
+      <button class="lang-option" data-lang="zh-TW">
+        <img src="assets/img/flags/hong-kong.png" alt="HK" class="flag-img">
+        <span class="lang-name">繁體中文</span>
+      </button>
+      <button class="lang-option" data-lang="zh-CN">
+        <img src="assets/img/flags/china.png" alt="CN" class="flag-img">
+        <span class="lang-name">简体中文</span>
+      </button>
+      <button class="lang-option" data-lang="en">
+        <img src="assets/img/flags/united-kingdom.png" alt="EN" class="flag-img">
+        <span class="lang-name">English</span>
+      </button>
+      <button class="lang-option" data-lang="ja">
+        <img src="assets/img/flags/japan.png" alt="JA" class="flag-img">
+        <span class="lang-name">日本語</span>
+      </button>
+      <button class="lang-option" data-lang="ko">
+        <img src="assets/img/flags/south-korea.png" alt="KO" class="flag-img">
+        <span class="lang-name">한국의</span>
+      </button>
+      <button class="lang-option" data-lang="ms">
+        <img src="assets/img/flags/malaysia.png" alt="MY" class="flag-img">
+        <span class="lang-name">Melayu</span>
+      </button>
+      <button class="lang-option" data-lang="th">
+        <img src="assets/img/flags/thailand.png" alt="TH" class="flag-img">
+        <span class="lang-name">ไทย</span>
+      </button>
+      <button class="lang-option" data-lang="de">
+        <img src="assets/img/flags/germany.png" alt="DE" class="flag-img">
+        <span class="lang-name">Deutsch</span>
+      </button>
+      <button class="lang-option" data-lang="fr">
+        <img src="assets/img/flags/france.png" alt="FR" class="flag-img">
+        <span class="lang-name">Français</span>
+      </button>
+      <button class="lang-option" data-lang="vi">
+        <img src="assets/img/flags/vietnam.png" alt="VN" class="flag-img">
+        <span class="lang-name">Tiếng Việt</span>
+      </button>
+      <button class="lang-option" data-lang="id">
+        <img src="assets/img/flags/brazil.png" alt="ID" class="flag-img">
+        <span class="lang-name">Bahasa Indonesia</span>
+      </button>
+      <button class="lang-option" data-lang="fil">
+        <img src="assets/img/flags/philippines.png" alt="FIL" class="flag-img">
+        <span class="lang-name">Filipino</span>
+      </button>
+      <button class="lang-option" data-lang="pt">
+        <img src="assets/img/flags/brazil.png" alt="PT" class="flag-img">
+        <span class="lang-name">Português</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Age Gate Modal -->
+  <div id="ageGateOverlay" class="age-gate-overlay" aria-hidden="false">
+    <div class="age-card" role="dialog" aria-labelledby="ageTitle" aria-modal="true">
+      <h1 id="ageTitle">🔞 Age Verification</h1>
+      <p class="legal">You must be 18 years or older to enter this website. By entering, you confirm you are of legal age in your jurisdiction and accept all terms of service.</p>
+      <div class="age-actions">
+        <button id="exitSite" class="btn exit">EXIT SITE</button>
+        <button id="enterSite" class="btn enter">I am 18+ (ENTER)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Telegram Button -->
+  <a href="https://t.me/xPandorax_bot" target="_blank" rel="noopener noreferrer" class="telegram-float" title="Telegram" aria-label="Open Telegram"></a>
+
+  <!-- Floating Theme Toggle -->
+  <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌑</button>
+
+  <!-- Load scripts with defer for better performance -->
+  <script src="assets/js/i18n.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  
+  <!-- Register Service Worker for PWA and offline caching -->
+  <script>
+    if('serviceWorker' in navigator){
+      window.addEventListener('load', ()=>{
+        navigator.serviceWorker.register('/sw.js').catch(()=>{});
+      });
+    }
+  </script>
+</body>
+</html>

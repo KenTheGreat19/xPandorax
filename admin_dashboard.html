@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - xPandorax Admin</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="assets/admin/admin-content.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="admin-body">
+    <div class="admin-dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <a href="admin_dashboard.html" class="logo">xPandorax Admin</a>
+            <nav>
+                <a href="#" class="nav-item active" data-view="dashboard" data-i18n="admin_dashboard">Dashboard</a>
+                <a href="#" class="nav-item" data-view="content" data-i18n="admin_content">Content Management</a>
+                <a href="#" class="nav-item" data-i18n="admin_users">User Management</a>
+                <a href="#" class="nav-item" data-i18n="admin_reports">Reports</a>
+                <a href="#" class="nav-item" data-i18n="admin_settings">Settings</a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="dashboardView">
+            <div class="alert alert-success" id="welcomeAlert">
+                You successfully read this important alert message.
+                <button onclick="this.parentElement.style.display='none'" style="float:right;background:none;border:none;cursor:pointer;">×</button>
+            </div>
+
+            <div class="dashboard-header">
+                <h1 class="dashboard-title" data-i18n="admin_dashboard">Dashboard</h1>
+                <div class="header-actions">
+                    <a href="index.html" target="_blank" class="btn" style="text-decoration: none;">
+                        <span>🌐</span>
+                        <span>Visit Website</span>
+                    </a>
+                    <span id="currentUser">Admin</span>
+                    <button onclick="logout()" class="btn" data-i18n="admin_logout">Logout</button>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Views</h3>
+                    <div class="value">78,706</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Unique Users</h3>
+                    <div class="value">24,093</div>
+                </div>
+                <div class="stat-card">
+                    <h3>New Users</h3>
+                    <div class="value">22,123</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Bounce Rate</h3>
+                    <div class="value">40.15%</div>
+                </div>
+            </div>
+
+            <!-- Traffic Chart -->
+            <div class="chart-container">
+                <canvas id="trafficChart"></canvas>
+            </div>
+
+            <!-- Social Stats -->
+            <div class="social-grid">
+                <div class="social-card facebook">
+                    <h3>Facebook</h3>
+                    <div>40k Friends</div>
+                    <div>450 Feeds</div>
+                </div>
+                <div class="social-card twitter">
+                    <h3>Twitter</h3>
+                    <div>30k Friends</div>
+                    <div>450 Tweets</div>
+                </div>
+                <div class="social-card linkedin">
+                    <h3>LinkedIn</h3>
+                    <div>40+ Contacts</div>
+                    <div>250 Feeds</div>
+                </div>
+                <div class="social-card google">
+                    <h3>Google+</h3>
+                    <div>94k Followers</div>
+                    <div>92 Circles</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Management View (injected by admin-content.js) -->
+        <div id="contentManagementView" style="display: none;"></div>
+    </div>
+
+    <script>
+    // Check authentication
+    function checkAuth() {
+        const authOld = localStorage.getItem('adminAuth');
+        const authNew = localStorage.getItem('xpandorax_auth');
+        
+        // Migrate old auth to new format if needed
+        if (authOld && !authNew) {
+            localStorage.setItem('xpandorax_auth', JSON.stringify({ role: 'admin', email: 'admin@xpandorax.com', createdAt: Date.now() }));
+        }
+        
+        if (!authOld && !authNew) {
+            window.location.href = 'admin.html';
+        }
+    }
+    checkAuth();
+
+    // Logout function
+    function logout() {
+        localStorage.removeItem('adminAuth');
+        localStorage.removeItem('xpandorax_auth');
+        window.location.href = 'admin.html';
+    }
+
+    // Navigation between views
+    document.querySelectorAll('.nav-item[data-view]').forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const view = item.getAttribute('data-view');
+            
+            // Update active nav item
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            item.classList.add('active');
+            
+            // Toggle views
+            const dashboardView = document.getElementById('dashboardView');
+            const contentView = document.getElementById('contentManagementView');
+            
+            if (view === 'dashboard') {
+                dashboardView.style.display = 'block';
+                contentView.style.display = 'none';
+            } else if (view === 'content') {
+                dashboardView.style.display = 'none';
+                contentView.style.display = 'block';
+                
+                // Trigger CMS load if not already loaded
+                if (!window.adminCMSLoaded) {
+                    loadContentManagement();
+                }
+            }
+        });
+    });
+
+    // Load Content Management System
+    async function loadContentManagement() {
+        const container = document.getElementById('contentManagementView');
+        if (!container) return;
+        
+        try {
+            // Try to load HTML snippet via fetch (works with web server)
+            const response = await fetch('assets/admin/admin-content.html');
+            if (response.ok) {
+                const html = await response.text();
+                container.innerHTML = html;
+            } else {
+                throw new Error('Fetch failed - likely file:// protocol');
+            }
+        } catch (err) {
+            // Fallback: Load script directly without HTML fetch
+            // This works even with file:// protocol
+            console.warn('Could not fetch HTML, loading JS directly:', err.message);
+            
+            // Create minimal container structure directly
+            container.innerHTML = `
+                <div class="admin-cms" id="adminCms">
+                    <header class="admin-cms__topbar">
+                        <div class="brand">
+                            <span class="logo">xPandorax Admin</span>
+                            <span class="env-chip" title="Static, no backend">STATIC</span>
+                        </div>
+                        <div class="topbar-actions">
+                            <button class="btn btn-icon" id="themeSwitch" aria-label="Toggle theme" title="Toggle theme">
+                                <i data-lucide="moon"></i>
+                            </button>
+                            <div class="clock" id="phClock" title="Philippines time (UTC+8)">--:--:-- PH</div>
+                            <button class="btn btn-danger" id="logoutBtn" title="Sign out">
+                                <i data-lucide="log-out"></i><span>Sign out</span>
+                            </button>
+                        </div>
+                    </header>
+                    <main class="admin-cms__main">
+                        <aside class="admin-cms__nav">
+                            <button class="nav-item active" data-tab="content">
+                                <i data-lucide="hard-drive"></i><span>Content</span>
+                            </button>
+                            <button class="nav-item" data-tab="entities">
+                                <i data-lucide="users"></i><span>Entity Management</span>
+                            </button>
+                            <button class="nav-item" data-tab="settings">
+                                <i data-lucide="settings"></i><span>Settings</span>
+                            </button>
+                        </aside>
+                        <section class="admin-cms__view" data-view="content">
+                            <div class="uploader">
+                                <div class="dropzone" id="dropZone" tabindex="0">
+                                    <div class="dz-inner">
+                                        <i data-lucide="upload-cloud" class="dz-icon"></i>
+                                        <h3>Drop or paste links</h3>
+                                        <p>Paste multiple video embed links and image URLs.</p>
+                                        <button class="btn btn-primary" id="pasteBtn" type="button">
+                                            <i data-lucide="clipboard-paste"></i><span>Paste</span>
+                                        </button>
+                                    </div>
+                                    <textarea class="dz-paste-capture" id="pasteCapture" aria-hidden="true"></textarea>
+                                </div>
+                            </div>
+                            <div class="content-toolbar">
+                                <button class="btn btn-success" id="newEntryBtn">
+                                    <i data-lucide="plus"></i><span>New Entry</span>
+                                </button>
+                                <button class="btn" id="downloadJsonBtn">
+                                    <i data-lucide="download"></i><span>Download JSON</span>
+                                </button>
+                                <span class="spacer"></span>
+                                <label class="search">
+                                    <i data-lucide="search"></i>
+                                    <input id="searchContent" placeholder="Search code/title/tags">
+                                </label>
+                            </div>
+                            <div class="content-grid" id="contentGrid"></div>
+                        </section>
+                        <section class="admin-cms__view" data-view="entities" hidden>
+                            <div class="entity-tabs">
+                                <button class="entity-tab active" data-entity="studios">Studios</button>
+                                <button class="entity-tab" data-entity="directors">Directors</button>
+                                <button class="entity-tab" data-entity="models">Models</button>
+                                <button class="entity-tab" data-entity="series">Series</button>
+                                <button class="entity-tab" data-entity="labels">Labels</button>
+                                <button class="entity-tab" data-entity="genres">Genres</button>
+                                <span class="spacer"></span>
+                                <button class="btn btn-success" id="addEntityBtn">
+                                    <i data-lucide="plus"></i><span>Add</span>
+                                </button>
+                            </div>
+                            <div class="entity-grid" id="entityGrid"></div>
+                        </section>
+                        <section class="admin-cms__view" data-view="settings" hidden>
+                            <div class="settings"><h3>Settings</h3></div>
+                        </section>
+                    </main>
+                    <div class="modal-root" id="modalRoot"></div>
+                    <div class="toast-root" id="toastRoot"></div>
+                </div>
+            `;
+        }
+        
+        // Load and execute JS (this works regardless of fetch success)
+        if (!window.adminCMSLoaded) {
+            const script = document.createElement('script');
+            script.src = 'assets/admin/admin-content.js';
+            script.onload = () => {
+                window.adminCMSLoaded = true;
+                const cms = container.querySelector('#adminCms');
+                if (cms) cms.hidden = false;
+                // Manually trigger icons
+                if (window.lucide) lucide.createIcons();
+            };
+            script.onerror = (err) => {
+                console.error('Failed to load admin-content.js:', err);
+                container.innerHTML = '<div style="padding: 20px; color: red;">Failed to load admin-content.js</div>';
+            };
+            document.body.appendChild(script);
+        } else {
+            const cms = container.querySelector('#adminCms');
+            if (cms) cms.hidden = false;
+            if (window.lucide) lucide.createIcons();
+        }
+    }
+
+    // Logout function
+    function logout() {
+        localStorage.removeItem('adminAuth');
+        window.location.href = 'admin.html';
+    }
+
+    // Traffic Chart
+    const ctx = document.getElementById('trafficChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+            datasets: [{
+                label: 'Visits',
+                data: [65, 59, 80, 81],
+                borderColor: '#36A2EB',
+                tension: 0.4,
+                fill: false
+            },
+            {
+                label: 'Unique Users',
+                data: [45, 49, 60, 71],
+                borderColor: '#4BC0C0',
+                tension: 0.4,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Traffic Overview'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    </script>
+
+    <!-- Floating Telegram Button -->
+    <a href="https://t.me/xPandorax_bot" target="_blank" rel="noopener" class="telegram-float" title="Telegram" aria-label="Open Telegram"></a>
+
+    <!-- Floating Theme Toggle -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌑</button>
+
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

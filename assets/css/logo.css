@@ -1,0 +1,28 @@
+/* Logo styles for different themes */
+:root[data-theme='dark'] .logo img {
+    filter: none; /* Original logo is already good for dark theme */
+}
+
+:root[data-theme='light'] .logo img {
+    filter: brightness(0.2); /* Darken logo for light theme */
+}
+
+/* Mobile logo styles */
+.mobile-logo {
+    display: block;
+    margin: 0 auto 1rem;
+    text-align: center;
+}
+
+.mobile-logo img {
+    height: 40px;
+    width: auto;
+}
+
+/* Make logo responsive */
+@media (max-width: 768px) {
+    .primary-header .logo img,
+    .mobile-logo img {
+        height: 32px;
+    }
+}

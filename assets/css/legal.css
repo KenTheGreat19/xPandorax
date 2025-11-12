@@ -1,0 +1,116 @@
+/* Legal pages styles */
+.legal-content {
+    padding: 100px 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.legal-content h1 {
+    color: var(--text);
+    font-size: 32px;
+    margin-bottom: 2rem;
+}
+
+.legal-text {
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.legal-text h2 {
+    color: var(--text);
+    font-size: 24px;
+    margin: 2rem 0 1rem;
+}
+
+.legal-text p {
+    margin-bottom: 1rem;
+}
+
+.legal-text ol, .legal-text ul {
+    margin: 1rem 0 1rem 2rem;
+}
+
+.legal-text li {
+    margin-bottom: 0.5rem;
+}
+
+.legal-text a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.legal-text a:hover {
+    text-decoration: underline;
+}
+
+.telegram-link {
+    text-align: center;
+    font-size: 1.2em;
+    margin: 2rem 0;
+}
+
+.telegram-link a {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.telegram-link a:hover {
+    background: var(--accent-hover);
+    text-decoration: none;
+}
+
+.telegram-links {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.telegram-links h3 {
+    margin-top: 0;
+    color: var(--text);
+}
+
+.telegram-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+}
+
+.telegram-links li {
+    margin-bottom: 1rem;
+}
+
+.telegram-links a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.2s;
+}
+
+.telegram-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.footer-links a {
+    color: #9aa;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: var(--accent);
+}

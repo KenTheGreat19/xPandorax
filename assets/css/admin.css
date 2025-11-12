@@ -1,0 +1,197 @@
+/* Admin Portal Styles */
+.admin-body {
+    background: #f4f6f9;
+    min-height: 100vh;
+}
+
+.admin-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0b0b17 0%, #1a1a2e 100%);
+}
+
+.login-card {
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.1);
+}
+
+.login-card h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 1.5rem;
+    background: #2b2d3e;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    color: white;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #666;
+    font-size: 14px;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 12px;
+    background: #e91e63;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.login-form button:hover {
+    background: #c2185b;
+}
+
+.login-form button:hover {
+    background: var(--accent-hover);
+}
+
+/* Dashboard Layout */
+.admin-dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background: #2c3338;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+.sidebar .logo {
+    padding: 1rem;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 2rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.nav-item:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+}
+
+.nav-item.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+.main-content {
+    flex: 1;
+    padding: 2rem;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.dashboard-title {
+    font-size: 24px;
+    color: #333;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.stat-card h3 {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card .value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.chart-container {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.social-card {
+    color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.social-card.facebook { background: #3b5998; }
+.social-card.twitter { background: #1da1f2; }
+.social-card.linkedin { background: #0077b5; }
+.social-card.google { background: #db4437; }
+
+.alert {
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}

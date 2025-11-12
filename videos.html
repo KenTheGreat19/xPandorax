@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videos - xPandorax</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="primary-header">
+        <a class="logo" href="index.html">
+            <span class="logo-icon">🎭</span>
+            <span class="logo-text">xPandorax</span>
+        </a>
+        
+        <div class="header-search">
+            <input id="search" type="search" data-i18n-placeholder="search.placeholder" placeholder="Search JAV codes, models, titles..." aria-label="Search">
+            <div id="autocomplete" class="autocomplete" role="listbox" aria-hidden="true"></div>
+        </div>
+        
+        <div class="header-actions">
+            <button id="signinBtn" class="btn signin-btn" data-i18n="signin">Sign In</button>
+            
+            <button id="languageToggle" class="language-toggle" aria-label="Change language">� EN</button>
+            
+            <button class="settings-btn" title="Settings"><span></span></button>
+            
+            <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+        </div>
+    </header>
+
+    <nav class="secondary-nav">
+        <a href="index.html" data-i18n="nav_home">Home</a>
+        <a href="categories.html" data-i18n="nav_categories">Categories</a>
+        <a href="videos.html" class="active" data-i18n="nav_videos">Videos</a>
+        <a href="pictures.html" data-i18n="nav_pictures">Pictures</a>
+        <a href="models.html" data-i18n="nav_models">Models</a>
+        <a href="producers.html" data-i18n="nav_producers">Producers</a>
+    </nav>
+
+    <main class="videos-main">
+        <div class="filters-bar">
+            <select class="filter-select">
+                <option data-i18n="filter_latest">Latest</option>
+                <option data-i18n="filter_popular">Most Popular</option>
+                <option data-i18n="filter_trending">Trending</option>
+                <option data-i18n="filter_viewed">Most Viewed</option>
+            </select>
+        </div>
+
+        <div class="grid" id="videosGrid"></div>
+
+        <div class="load-more-container">
+            <button id="loadMoreBtn" class="load-more-btn" data-i18n="load_more">Load More</button>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="index.html" data-i18n="footer.home">Home</a>
+            <a href="contact.html" data-i18n="footer.contact">Contact Us</a>
+            <a href="upload_request.html" data-i18n="footer.upload">Upload Request</a>
+            <a href="legal/dmca.html" data-i18n="footer.dmca">DMCA</a>
+            <a href="legal/2257.html" data-i18n="footer.2257">2257</a>
+            <a href="legal/tos.html" data-i18n="footer.terms">Terms of Service</a>
+            <a href="legal/privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+        </div>
+        <p class="footer-copyright" data-i18n="footer.copyright">© 2025 xPandorax.com | All Rights Reserved</p>
+    </footer>
+
+    <!-- Floating Telegram Button -->
+    <a href="https://t.me/xPandorax_bot" target="_blank" rel="noopener" class="telegram-float" title="Telegram" aria-label="Open Telegram"></a>
+
+    <!-- Floating Theme Toggle -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌑</button>
+
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const grid = document.getElementById('videosGrid');
+        // Add placeholders
+        for (let i = 0; i < 12; i++) {
+            const placeholder = document.createElement('div');
+            placeholder.className = 'gallery-placeholder';
+            placeholder.innerHTML = `
+                <div class="thumb" aria-hidden="true"></div>
+                <div class="meta" aria-hidden="true">
+                    <div class="bar large"><span class="placeholder-shimmer"></span></div>
+                    <div class="bar small"><span class="placeholder-shimmer"></span></div>
+                </div>`;
+            grid.appendChild(placeholder);
+        }
+    });
+    </script>
+
+    <!-- Language Selector Modal -->
+    <div id="languageModal" class="language-modal" aria-hidden="true">
+        <div class="language-menu">
+            <button class="lang-option" data-lang="zh-TW"><span class="flag">🇹🇼</span><span class="lang-name">繁體中文</span></button>
+            <button class="lang-option" data-lang="zh-CN"><span class="flag">🇨🇳</span><span class="lang-name">简体中文</span></button>
+            <button class="lang-option" data-lang="en"><span class="flag">🇬🇧</span><span class="lang-name">English</span></button>
+            <button class="lang-option" data-lang="ja"><span class="flag">🇯🇵</span><span class="lang-name">日本語</span></button>
+            <button class="lang-option" data-lang="ko"><span class="flag">🇰🇷</span><span class="lang-name">한국의</span></button>
+            <button class="lang-option" data-lang="ms"><span class="flag">🇲🇾</span><span class="lang-name">Melayu</span></button>
+            <button class="lang-option" data-lang="th"><span class="flag">🇹🇭</span><span class="lang-name">ไทย</span></button>
+            <button class="lang-option" data-lang="de"><span class="flag">🇩🇪</span><span class="lang-name">Deutsch</span></button>
+            <button class="lang-option" data-lang="fr"><span class="flag">🇫🇷</span><span class="lang-name">Français</span></button>
+            <button class="lang-option" data-lang="vi"><span class="flag">🇻🇳</span><span class="lang-name">Tiếng Việt</span></button>
+            <button class="lang-option" data-lang="id"><span class="flag">🇮🇩</span><span class="lang-name">Bahasa Indonesia</span></button>
+            <button class="lang-option" data-lang="fil"><span class="flag">🇵🇭</span><span class="lang-name">Filipino</span></button>
+            <button class="lang-option" data-lang="pt"><span class="flag">🇧🇷</span><span class="lang-name">Português</span></button>
+        </div>
+    </div>
+</body>
+</html>
